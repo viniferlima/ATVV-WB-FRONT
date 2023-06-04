@@ -310,12 +310,12 @@ export default class ListaCliente extends Component<props, state> {
     }
 
     formatarTelefone(numero) {
-        const numeroLimpo = numero.toString().trim().replace(/\D/g, '');
+        const numeroLimpo = numero?.toString().trim().replace(/\D/g, '');
       
-        if (numeroLimpo.length === 10) {
-          return `(${numeroLimpo.substr(0, 2)}) ${numeroLimpo.substr(2, 4)}-${numeroLimpo.substr(6, 4)}`;
-        } else if (numeroLimpo.length === 11) {
-          return `(${numeroLimpo.substr(0, 2)}) ${numeroLimpo.substr(2, 5)}-${numeroLimpo.substr(7, 4)}`;
+        if (numeroLimpo?.length === 10) {
+          return `(${numeroLimpo?.substr(0, 2)}) ${numeroLimpo.substr(2, 4)}-${numeroLimpo.substr(6, 4)}`;
+        } else if (numeroLimpo?.length === 11) {
+          return `(${numeroLimpo?.substr(0, 2)}) ${numeroLimpo.substr(2, 5)}-${numeroLimpo.substr(7, 4)}`;
         } else {
           return numero;
         }
