@@ -24,13 +24,14 @@ export default class ListaCliente extends Component<props, state> {
 
     handleChange = (dados) => {
         const dadosCliente = dados;
-        this.props.onDataChange(dados);
+        this.props.onDataChange(dadosCliente);
     };
 
     constructor(props) {
         super(props)
         this.state = { tela: 'Clientes', clientes: [] }
         this.buscarClientePeloID = this.buscarClientePeloID.bind(this)
+        this.buscarClientes = this.buscarClientes.bind(this)
     }
 
     componentDidMount() {
@@ -40,8 +41,8 @@ export default class ListaCliente extends Component<props, state> {
 
     public buscarClientes() {
         let buscadorClientes = new BuscadorClientes()
-        const clientes = buscadorClientes.buscar()
-        clientes.then(clientes => {
+        const clientesBuscados = buscadorClientes.buscar()
+        clientesBuscados.then(clientes => {
             this.setState({ clientes: clientes })
             this.todosClientes = clientes
         })
@@ -86,27 +87,132 @@ export default class ListaCliente extends Component<props, state> {
         this.excluirRemoto(id)
     }
 
+    formatarValor(valor) {
+        const formatter = new Intl.NumberFormat("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        });
+        return formatter.format(valor);
+    }
+
+    listagemPersonalizada(evento: any) {
+        const opcaoSelecionada = evento.target.value
+
+        switch (opcaoSelecionada) {
+            case '0':
+                this.setState({
+                    clientes: this.todosClientes
+                })
+                break
+            case '1':
+                this.listarPorGenero('Masculino')
+                break
+            case '2':
+                this.listarPorGenero('Feminino')
+                break
+            case '3':
+                this.listarPorGenero('Outro')
+                break
+            case '4':
+                this.listarOsDezClientesQueMaisConsumiramEmQuantidade()
+                break
+            case '5':
+                this.listarOsCincoClientesQueMaisConsumiramEmValor()
+                break
+            case '6':
+                this.listarOsDezClientesQueMenosConsumiramEmQuantidade()
+                break
+            case '7':
+                this.listarOsDezClientesQueMenosConsumiramEmValor()
+                break
+        }
+
+    }
+
+    listarOsDezClientesQueMaisConsumiramEmQuantidade() {
+        const todosClientes = this.todosClientes
+        const clientesQueMaisConsumiramEmQuantidade = todosClientes.sort((a, b) => b.qtdConsumida - a.qtdConsumida).slice(0, 10);
+
+        this.setState({
+            clientes: clientesQueMaisConsumiramEmQuantidade
+        })
+    }
+
+    listarPorGenero(genero: string) {
+        const todosClientes = this.todosClientes
+
+        const clientesPorGeneroEspecifico = todosClientes.filter(cliente => cliente.genero === genero);
+
+        if (clientesPorGeneroEspecifico.length > 0) {
+            this.setState({
+                clientes: clientesPorGeneroEspecifico
+            })
+        } else {
+            this.showToast(`Não existem clientes cadastrados do gênero ${genero}`)
+        }
+    }
+
+    listarOsDezClientesQueMenosConsumiramEmQuantidade() {
+        const todosClientes = this.todosClientes
+        const clientesQueMenosConsumiramEmQuantidade = todosClientes.sort((a, b) => a.qtdConsumida - b.qtdConsumida).slice(0, 10);
+
+        this.setState({
+            clientes: clientesQueMenosConsumiramEmQuantidade
+        })
+    }
+
+    listarOsDezClientesQueMenosConsumiramEmValor() {
+        const todosClientes = this.todosClientes
+        const clientesQueMenosConsumiramEmValor = todosClientes.sort((a, b) => a.valorConsumido - b.valorConsumido).slice(0, 10);
+
+        this.setState({
+            clientes: clientesQueMenosConsumiramEmValor
+        })
+    }
+
+    listarOsCincoClientesQueMaisConsumiramEmValor() {
+        const todosClientes = this.todosClientes
+        const clientesQueMaisConsumiramEmValor = todosClientes.sort((a, b) => b.valorConsumido - a.valorConsumido).slice(0, 5);
+
+        this.setState({
+            clientes: clientesQueMaisConsumiramEmValor
+        })
+    }
+
     renderCamposPesquisa() {
-        let estiloTitulo = `center-align blue-text teste`
+        let estiloTitulo = `center-align blue-text`
+        let estituloBotaoRecarregar = `btn-floating btn-small waves-effect waves-light btn tooltipped`
         let titulo = `${this.props.titulo}`
 
         return (
             <>
-                <h5 className={estiloTitulo}>{titulo}</h5>
+                <div className="row">
+                    <div className="input-field col s11">
+                        <h5 className={estiloTitulo}>{titulo}</h5>
+                    </div>
+                    <div className="input-field col s1">
+                        <button onClick={this.buscarClientes} className={estituloBotaoRecarregar} style={{ margin: "5px" }} data-position="left" data-tooltip="Recarregar clientes">
+                            <i className="material-icons left">refresh</i>
+                        </button>                    
+                    </div>
+                </div>
 
                 <div className="row">
                     <div className="input-field col s6">
                         <i className="material-icons prefix">search</i>
                         <input id="icon_prefix" type="text" className="validate" onChange={(e) => this.buscarClientePeloID(e)} />
-                        <label htmlFor="icon_prefix">Busca</label>
+                        <label htmlFor="icon_prefix">Busca por ID</label>
                     </div>
                     <div className="input-field col s6">
-                        <select defaultValue="0">
-                            <option value="0" disabled>Escolha como listar os clientes</option>
-                            <option value="1">Todos os clientes por gênero</option>
-                            <option value="2">Os 10 clientes que mais consumiram, em quantidade</option>
-                            <option value="3">Os 5 clientes que mais consumiram, em valor</option>
-                            <option value="4">Os 10 clientes que menos consumiram, em valor</option>
+                        <select defaultValue="0" onChange={(e) => this.listagemPersonalizada(e)}>
+                            <option value="0">Todos os clientes</option>
+                            <option value="1">Por gênero masculino</option>
+                            <option value="2">Por gênero feminino</option>
+                            <option value="3">Por gênero outro</option>
+                            <option value="4">Os 10 clientes que mais consumiram, em quantidade</option>
+                            <option value="5">Os 5 clientes que mais consumiram, em valor</option>
+                            <option value="6">Os 10 clientes que menos consumiram, em quantidade</option>
+                            <option value="7">Os 10 clientes que menos consumiram, em valor</option>
                         </select>
                     </div>
                 </div>
@@ -136,11 +242,16 @@ export default class ListaCliente extends Component<props, state> {
 
 
         if (quantidadeClientes > 0) {
-            let listaClientes = this.state.clientes.map((cliente, i) => (
-                <tr key={i}>
+            let listaClientes = this.state.clientes.map((cliente) => (
+                <tr key={cliente.id}>
+                    <td>{cliente.id}</td>
                     <td>{cliente.nome}</td>
                     <td>{cliente.sobreNome}</td>
-                    <td>{this.getNumeroTelefoneFormatado(cliente.telefones[0])}</td>
+                    <td>{cliente.genero}</td>
+                    <td>{cliente.cpf}</td>
+                    <td>{this.formatarTelefone(cliente.telefone)}</td>
+                    <td>{cliente.qtdConsumida}</td>
+                    <td>{this.formatarValor(cliente.valorConsumido)}</td>
                     <td>
                         <a className={estiloBotaoEditar} style={{ marginRight: "2px" }} href="#!" onClick={(e) => this.abreTelaAtualizacao(e, cliente)} data-position="left" data-tooltip="Alterar">
                             <i className="material-icons">edit</i>
@@ -158,9 +269,14 @@ export default class ListaCliente extends Component<props, state> {
                     <table className="highlight centered responsive-table">
                         <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>Nome</th>
                                 <th>Sobrenome</th>
-                                <th>Telefone</th>
+                                <th>Gênero</th>
+                                <th>CPF</th>
+                                <th>DDD + Telefone</th>
+                                <th>Qtd. itens consumidos</th>
+                                <th>Valor(R$) em consumo</th>
                                 <th>Ação</th>
                             </tr>
                         </thead>
@@ -193,11 +309,15 @@ export default class ListaCliente extends Component<props, state> {
         M.toast({ html: mensagem })
     }
 
-    getNumeroTelefoneFormatado(telefone: any): string {
-        if (telefone == null) {
-            return 'Sem registro'
+    formatarTelefone(numero) {
+        const numeroLimpo = numero.toString().trim().replace(/\D/g, '');
+      
+        if (numeroLimpo.length === 10) {
+          return `(${numeroLimpo.substr(0, 2)}) ${numeroLimpo.substr(2, 4)}-${numeroLimpo.substr(6, 4)}`;
+        } else if (numeroLimpo.length === 11) {
+          return `(${numeroLimpo.substr(0, 2)}) ${numeroLimpo.substr(2, 5)}-${numeroLimpo.substr(7, 4)}`;
         } else {
-            return `(${telefone.ddd}) ${telefone.numero}`
+          return numero;
         }
-    }
+      }
 }

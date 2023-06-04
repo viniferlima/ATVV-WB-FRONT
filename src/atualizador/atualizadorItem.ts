@@ -1,9 +1,9 @@
 import { URI } from "../enuns/uri"
 import Atualizador from "./atualizador"
 
-class AtualizadorCliente implements Atualizador {
+class AtualizadorItem implements Atualizador {
     atualizar(objeto: Object): void {
-        fetch(URI.ATUALIZAR_CLIENTE, {
+        fetch(URI.ATUALIZAR_ITEM, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -12,8 +12,8 @@ class AtualizadorCliente implements Atualizador {
         })
     }
 
-    adicionarValoresConsumidos(consumo: any): void {
-        fetch(URI.CLIENTE_ADICIONAR_VALORES_CONSUMIDOS, {
+    adicionarQtdConsumida(consumo: any): void {
+        fetch(URI.ITEM_ADICIONAR_QTD_CONSUMIDA, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -22,8 +22,8 @@ class AtualizadorCliente implements Atualizador {
         })
     }
 
-    subtrairValoresConsumidos(consumo: any): void {
-        fetch(`${URI.CLIENTE_SUBTRAIR_VALORES_CONSUMIDOS}`, {
+    subtrairQtdConsumida(consumo: any): void {
+        fetch(URI.ITEM_SUBTRAIR_QTD_CONSUMIDA, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -31,6 +31,5 @@ class AtualizadorCliente implements Atualizador {
             body: JSON.stringify(consumo)
         })
     }
-
 }
-export default AtualizadorCliente
+export default AtualizadorItem

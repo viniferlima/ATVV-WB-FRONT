@@ -17,10 +17,11 @@ export default class FormularioCadastroCliente extends Component<props, state> {
     constructor(props) {
         super(props)
         this.capturarNome = this.capturarNome.bind(this)
+        this.capturarCPF = this.capturarCPF.bind(this)
         this.capturarSobrenome = this.capturarSobrenome.bind(this)
         this.capturarEmail = this.capturarEmail.bind(this)
         this.capturarTelefone = this.capturarTelefone.bind(this)
-        this.capturarDDD = this.capturarDDD.bind(this)
+        this.capturarGenero = this.capturarGenero.bind(this)
         this.capturarEstado = this.capturarEstado.bind(this)
         this.capturarCidade = this.capturarCidade.bind(this)
         this.capturarBairro = this.capturarBairro.bind(this)
@@ -47,11 +48,10 @@ export default class FormularioCadastroCliente extends Component<props, state> {
                     id: '',
                     nome: '',
                     sobreNome: '',
+                    genero: 'Outro',
+                    cpf: '',
                     email: '',
-                    telefone: {
-                        numero: '',
-                        ddd: ''
-                    },
+                    telefone: '',
                     estado: '',
                     cidade: '',
                     rua: '',
@@ -75,6 +75,18 @@ export default class FormularioCadastroCliente extends Component<props, state> {
         }));
     }
 
+    public capturarCPF(evento: any) {
+        const cpf = evento.target.value
+        const cpfFormatado: string = cpf.toString().trim().replace(/[.-]/g, "")
+
+        this.setState(prevState => ({
+            dadosCliente: {
+                ...prevState.dadosCliente,
+                cpf: cpfFormatado
+            }
+        }));
+    }
+
     public capturarSobrenome(evento: any) {
         const sobrenome = evento.target.value
 
@@ -86,30 +98,24 @@ export default class FormularioCadastroCliente extends Component<props, state> {
         }));
     }
 
-    public capturarTelefone(evento: any) {
-        const telefone = evento.target.value
+    public capturarGenero(evento: any) {
+        const genero = evento.target.value
 
         this.setState(prevState => ({
             dadosCliente: {
                 ...prevState.dadosCliente,
-                telefone: {
-                    ...prevState.dadosCliente.telefone,
-                    numero: telefone
-                }
+                genero: genero
             }
         }));
     }
 
-    public capturarDDD(evento: any) {
-        const ddd = evento.target.value
+    public capturarTelefone(evento: any) {
+        const numero = evento.target.value
 
         this.setState(prevState => ({
             dadosCliente: {
                 ...prevState.dadosCliente,
-                telefone: {
-                    ...prevState.dadosCliente.telefone,
-                    ddd: ddd
-                }
+                telefone: numero
             }
         }));
     }
@@ -240,11 +246,10 @@ export default class FormularioCadastroCliente extends Component<props, state> {
             id: null,
             nome: this.state.dadosCliente.nome,
             sobreNome: this.state.dadosCliente.sobreNome,
+            genero: this.state.dadosCliente.genero,
+            cpf: this.state.dadosCliente.cpf,
             email: this.state.dadosCliente.email,
-            telefone: {
-                ddd: this.state.dadosCliente?.telefone?.ddd,
-                numero: this.state.dadosCliente?.telefone?.telefone
-            },
+            telefone: this.state.dadosCliente.telefone,
             endereco: {
                 estado: this.state.dadosCliente?.endereco?.estado,
                 cidade: this.state.dadosCliente?.endereco?.cidade,
@@ -299,17 +304,27 @@ export default class FormularioCadastroCliente extends Component<props, state> {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="input-field col s2 xl1">
-                                <input id="ddd" type="text" className="validate" value={this.state.dadosCliente?.telefone?.ddd || ''} onChange={(e) => this.capturarDDD(e)} />
-                                <label className="active" htmlFor="ddd">DDD</label>
+                            <div className="input-field col s6 xl6">
+                                <input id="cpf" type="text" className="validate" value={this.state.dadosCliente.cpf || ''} onChange={(e) => this.capturarCPF(e)} />
+                                <label className="active" htmlFor="sobrenome">CPF</label>
                             </div>
-                            <div className="input-field col s10 xl5">
-                                <input id="telefone" type="text" className="validate" value={this.state.dadosCliente?.telefone?.numero || ''} onChange={(e) => this.capturarTelefone(e)} />
-                                <label className="active" htmlFor="telefone">Telefone</label>
-                            </div>
-                            <div className="input-field col s12 xl6">
+                            <div className="input-field col s6 xl6">
                                 <input id="email" type="email" className="validate" value={this.state.dadosCliente?.email || ''} onChange={(e) => this.capturarEmail(e)} />
                                 <label className="active" htmlFor="email">E-mail</label>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="input-field col s6">
+                            <select defaultValue="Outro" id="genero" className="validate" value={this.state.dadosCliente.genero || ''} onChange={(e) => this.capturarGenero(e)}>
+                                    <option value="Outro">Outro</option>
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Feminino">Feminino</option>
+                            </select>
+                            <label className="active" htmlFor="genero">Gênero</label>
+                            </div>
+                            <div className="input-field col s6">
+                                <input id="telefone" type="text" className="validate" value={this.state.dadosCliente.telefone || ''} onChange={(e) => this.capturarTelefone(e)} />
+                                <label className="active" htmlFor="telefone">DDD + Telefone</label>
                             </div>
                         </div>
                         <div className="row">

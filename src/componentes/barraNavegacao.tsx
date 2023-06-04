@@ -39,7 +39,7 @@ export default class BarraNavegacao extends Component<props> {
             <>
                 <nav className={estilo}>
                     <div className="nav-wrapper">
-                        <a className="brand-logo">WB ATV-2</a>
+                        <a className="brand-logo">WB ATV-5</a>
                         <a data-target="mobile-menu" className="sidenav-trigger"><i className="material-icons">menu</i></a>
                         <ul className="right hide-on-med-and-down">
                             {this.gerarListaBotoes()}
