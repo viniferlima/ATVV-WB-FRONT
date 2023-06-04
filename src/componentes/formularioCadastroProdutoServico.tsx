@@ -38,7 +38,7 @@ export default class FormularioCadastroProdutoServico extends Component<props, s
                     id: '',
                     nome: '',
                     preco: '',
-                    tipo: '',
+                    tipo: 'Produto',
                 }
             });
         }
@@ -56,12 +56,14 @@ export default class FormularioCadastroProdutoServico extends Component<props, s
     }
 
     public capturarPreco(evento: any) {
-        const preco = evento.target.value
+        const preco = evento.target.value.toString().trim()
+
+        const apenasNumeros = preco.replace(/\D/g, "");
 
         this.setState(prevState => ({
             dadosItem: {
                 ...prevState.dadosItem,
-                preco: preco
+                preco: apenasNumeros
             }
         }));
     }
@@ -95,9 +97,14 @@ export default class FormularioCadastroProdutoServico extends Component<props, s
             nome: this.state.dadosItem.nome,
             preco: this.state.dadosItem.preco,
             tipo: this.state.dadosItem.tipo,
+            qtdConsumida: 0,
+            qtdConsumidaGeneroMasculino: 0,
+            qtdConsumidaGeneroFeminino: 0,
+            qtdConsumidaGeneroOutro: 0
         };
 
         if (this.props.titulo == 'Cadastro de Item') {
+            console.log('entrou aqui')
             this.efetuaCadastro(item)
         } else {
             item.id = this.state.dadosItem.id

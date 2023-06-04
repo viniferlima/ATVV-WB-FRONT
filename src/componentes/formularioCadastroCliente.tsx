@@ -52,7 +52,7 @@ export default class FormularioCadastroCliente extends Component<props, state> {
                     cpf: '',
                     email: '',
                     telefone: '',
-                    estado: '',
+                    estado: 'Acre',
                     cidade: '',
                     rua: '',
                     bairro: '',
@@ -258,7 +258,9 @@ export default class FormularioCadastroCliente extends Component<props, state> {
                 numero: this.state.dadosCliente?.endereco?.numero,
                 codigoPostal: this.state.dadosCliente?.endereco?.codigoPostal,
                 informacoesAdicionais: this.state.dadosCliente?.endereco?.informacoesAdicionais
-            }
+            },
+            qtdConsumida: 0,
+            valorConsumido: 0
         };
 
         if (this.props.titulo == 'Cadastro de Cliente') {
