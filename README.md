@@ -35,7 +35,7 @@ Cada  uma  das  etapas  que  você  trilhou,  as  atividades  I,  II,  III  e  I
 
 ### Telas de busca/listagem
 
-* Nesta tela são listados os dados registrados nas entidades banco de dados;
+* Neste tipo de tela são listados os dados registrados nas entidades banco de dados;
 * Também é possível realizar a busca por um registro especifico. Basta inserir o ID do registro no campo de entrada de dados. Se ele for encontrado,
 a tabela será atualizada e passará a exibir apenas os dados do registro pesquisado.
 * Outra função disponível nesta tela é a exclusão de um registro. Ao clicar na lixeira vermelha, a remoção do item da base de dados é efetuada.
@@ -48,21 +48,21 @@ a tabela será atualizada e passará a exibir apenas os dados do registro pesqui
 
 ### Telas de cadastro
 
-* Nesta tela é possível criar um novo registro no banco de dados:
+* Nesta tipo de tela é possível criar um novo registro no banco de dados:
 
 ![image](https://github.com/viniferlima/ATVV-WB-FRONT/assets/30990193/2eb05240-5496-4d2a-9e57-16e1079e5d44)
 
 ![image](https://github.com/viniferlima/ATVV-WB-FRONT/assets/30990193/c221599e-4f87-4e0e-beac-7094a08be525)
 
-### Tela de alteração de dados
+### Telas de alteração de dados
 
-* Nesta tela é possível atualizar os dados de um registro já existente no banco de dados:
+* Neste tipo de tela é possível atualizar os dados de um registro já existente no banco de dados:
 
 ![image](https://github.com/viniferlima/ATVV-WB-FRONT/assets/30990193/b8ebaaef-4cbc-446e-adf9-f9ac7905b08a)
 
 ![image](https://github.com/viniferlima/ATVV-WB-FRONT/assets/30990193/2ee3fb17-73f7-48dc-a5a6-76f2569b4617)
 
-### Tela de criação de compra/consumo
+### Telas de criação de compra/consumo
 
 * Nesta tela é possível adicionar os itens ao carrinho de compras, selecionar o cliente atrelado a esta compra, remover itens do carrinho, visualizar o totalizador (R$), e também salvar os dados no botão "submit".
 
