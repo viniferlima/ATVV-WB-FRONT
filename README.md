@@ -81,6 +81,6 @@ a tabela será atualizada e passará a exibir apenas os dados do registro pesqui
 
 ### Observações
 
-* O projeto do back-end se econtra no repositório https://github.com/viniferlima/ATVV-WB-BACK. Não redigi um arquivo readMe no outro repositório, todas as informações relevantes a ATVV-WB estarão contidas neste repositório.
+* O projeto do back-end se econtra no repositório https://github.com/viniferlima/ATVV-WB-BACK. Não redigi um arquivo ReadMe no outro repositório, todas as informações relevantes a ATVV-WB estarão contidas neste repositório.
 
 
