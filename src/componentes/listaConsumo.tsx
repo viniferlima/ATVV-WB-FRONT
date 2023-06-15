@@ -116,10 +116,10 @@ export default class ListaConsumo extends Component<props, state> {
         return (
             <>
                 <div className="row">
-                    <div className="input-field col s11">
+                    <div className="input-field col s10 xl11">
                         <h5 className={estiloTitulo}>{titulo}</h5>
                     </div>
-                    <div className="input-field col s1">
+                    <div className="input-field col s2 xl1">
                         <button onClick={this.buscarConsumos} className={estituloBotaoRecarregar} style={{ margin: "5px" }} data-position="left" data-tooltip="Recarregar consumos">
                             <i className="material-icons left">refresh</i>
                         </button>
