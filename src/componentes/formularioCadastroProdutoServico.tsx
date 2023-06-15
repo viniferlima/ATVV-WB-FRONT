@@ -104,7 +104,6 @@ export default class FormularioCadastroProdutoServico extends Component<props, s
         };
 
         if (this.props.titulo == 'Cadastro de Item') {
-            console.log('entrou aqui')
             this.efetuaCadastro(item)
         } else {
             item.id = this.state.dadosItem.id
