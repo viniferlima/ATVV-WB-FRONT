@@ -10,7 +10,7 @@ Cada  uma  das  etapas  que  você  trilhou,  as  atividades  I,  II,  III  e  I
 
 * Inicialmente, é necessário rodar o comando "npm install" para instalar as dependências do projeto front-end.
 
-* Depois, basta rodar o comando "npm run start" no console do terminal e a aplicação GUI, desenvolida em REACT e MATERIALIZE e MATERIAL UI, carregará automaticamente no endereço http://localhost:3000/
+* Depois, basta rodar o comando "npm run start" no console do terminal do Visual Studio Code e então, a aplicação GUI desenvolida em REACT, MATERIALIZE e MATERIAL UI, carregará automaticamente no endereço http://localhost:3000/
 
 
 ### Back-end
@@ -35,16 +35,11 @@ Cada  uma  das  etapas  que  você  trilhou,  as  atividades  I,  II,  III  e  I
 
 ### Telas de busca/listagem
 
-* Neste tipo de tela são listados os dados registrados nas entidades banco de dados;
-* Também é possível realizar a busca por um registro especifico. Basta inserir o ID do registro no campo de entrada de dados. Se ele for encontrado,
-a tabela será atualizada e passará a exibir apenas os dados do registro pesquisado.
-* Outra função disponível nesta tela é a exclusão de um registro. Ao clicar na lixeira vermelha, a remoção do item da base de dados é efetuada.
+* Neste tipo de tela são listados os dados registrados nas entidades do banco de dados;
+* Também é possível realizar a busca por um registro específico. Basta inserir o ID do registro no campo de entrada de texto com placeholder "Busca por ID". Se ele for encontrado, a tabela será atualizada e passará a exibir apenas os dados encontrados a partir do ID buscado no campo de texto; se não for encontrado, um toasty popup será acionado na interface do usuário.
+* Outra função disponível nesta tela é a exclusão de um registro. Ao clicar no botão que possui um ícone de lixeira vermelha, a remoção do item na base de dados é efetuada.
 * Por meio do combobox é possível fazer uma listagem específica dos itens.
-* O botão verde de refresh recarrega os dados na tabela. 
-
-![image](https://github.com/viniferlima/ATVV-WB-FRONT/assets/30990193/1fbca034-d57b-47ed-bb7a-ddb39c36f59c)
-
-![image](https://github.com/viniferlima/ATVV-WB-FRONT/assets/30990193/b4bffe29-0a6b-4d40-bb86-aaf0451de56d)
+* O botão verde de refresh recarrega/atualiza os dados na tabela. 
 
 ### Telas de cadastro
 
