@@ -41,38 +41,44 @@ Cada  uma  das  etapas  que  você  trilhou,  as  atividades  I,  II,  III  e  I
 * Por meio do combobox é possível fazer uma listagem específica dos itens.
 * O botão verde de refresh recarrega/atualiza os dados na tabela. 
 
+![Busca de clientes](prints/buscaClientes.png)
+
+![Busca de produtos/serviços](prints/buscaProdutosServicos.png)
+
+![Busca de consumos](prints/buscaConsumos.png)
+
 ### Telas de cadastro
 
 * Nesta tipo de tela é possível criar um novo registro no banco de dados:
 
-![image](https://github.com/viniferlima/ATVV-WB-FRONT/assets/30990193/2eb05240-5496-4d2a-9e57-16e1079e5d44)
+![Cadastro de clientes](prints/cadastroClientes.png)
 
-![image](https://github.com/viniferlima/ATVV-WB-FRONT/assets/30990193/c221599e-4f87-4e0e-beac-7094a08be525)
+![Cadastro de produtos/serviços](prints/cadastroProdutosServicos.png)
 
 ### Telas de alteração de dados
 
 * Neste tipo de tela é possível atualizar os dados de um registro já existente no banco de dados:
 
-![image](https://github.com/viniferlima/ATVV-WB-FRONT/assets/30990193/b8ebaaef-4cbc-446e-adf9-f9ac7905b08a)
+![Alteração de clientes](prints/alteracaoClientes.png)
 
-![image](https://github.com/viniferlima/ATVV-WB-FRONT/assets/30990193/2ee3fb17-73f7-48dc-a5a6-76f2569b4617)
+![Alteração de produtos/serviços](prints/alteracaoProdutosServicos.png)
 
 ### Telas de criação de compra/consumo
 
-* Nesta tela é possível adicionar os itens ao carrinho de compras, selecionar o cliente atrelado a esta compra, remover itens do carrinho, visualizar o totalizador (R$), e também salvar os dados no botão "submit".
+* Nesta tela é possível adicionar os itens ao carrinho de compras, selecionar o cliente atrelado a esta compra, remover itens do carrinho, visualizar o totalizador da compra (R$), e também salvar os dados no botão "submit".
 
-![image](https://github.com/viniferlima/ATVV-WB-FRONT/assets/30990193/aa40b06f-f4d7-445e-a7ce-a48553e36de1)
+![Novo consumo](prints/novoConsumo.png)
 
 ### Tela de visualização de compra/consumo
 
 * Nesta tela é possível apenas visualizar os dados completos da compra. 
 * Diferentemente das outras entidades, não é possível realizar alteração dos dados de um consumo (não faz parte dos requisitos).
 
-![image](https://github.com/viniferlima/ATVV-WB-FRONT/assets/30990193/26327935-db63-4a81-a09e-4a96c5e76ae8)
+![Visualização de consumo](prints/visualizacaoConsumo.png)
 
 ### Layout Mobile
 
-![image](https://github.com/viniferlima/ATVV-WB-FRONT/assets/30990193/8e07b273-e1ab-4a3d-b30d-3a733c9fd3df)
+![Layout Mobile](prints/mobile.png)
 
 ### Observações
 
